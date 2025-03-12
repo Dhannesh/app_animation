@@ -8,8 +8,7 @@ class BasicAnimation extends StatefulWidget {
 }
 
 class _BasicAnimationState extends State<BasicAnimation> {
-  double _width = 50;
-  double _height = 50;
+  double _sliderValue = 50.0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,8 +16,8 @@ class _BasicAnimationState extends State<BasicAnimation> {
         Expanded(
             child: Center(
           child: Container(
-            width: _width,
-            height: _height,
+            width: _sliderValue,
+            height: _sliderValue,
             alignment: Alignment.center,
             decoration: BoxDecoration(color: Colors.lightGreenAccent),
           ),
@@ -28,26 +27,15 @@ class _BasicAnimationState extends State<BasicAnimation> {
           child: Row(
             children: <Widget>[
               Expanded(
-                  child: ElevatedButton(
-                      onPressed: () {
+                  child: Slider(
+                      value: _sliderValue,
+                      min: 20,
+                      max: 300,
+                      onChanged: (double value) {
                         setState(() {
-                          _width -= 4;
-                          _height -= 4;
+                          _sliderValue = value;
                         });
-                      },
-                      child: Text('Shrink'))),
-              SizedBox(
-                width: 8.0,
-              ),
-              Expanded(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _width += 4;
-                          _height += 4;
-                        });
-                      },
-                      child: Text('Grow')))
+                      }))
             ],
           ),
         )
