@@ -1,4 +1,5 @@
 import 'package:app_animation/animated_container1.dart';
+import 'package:app_animation/animated_cross_fade_page.dart';
 import 'package:app_animation/animated_opacity_page.dart';
 import 'package:app_animation/basic_animation.dart';
 import 'package:app_animation/multiple_animated_container.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Animation',
       theme: ThemeData(
           brightness: Brightness.dark, primarySwatch: Colors.deepOrange),
-      home: AnimatedOpacityPage()
+      home: AnimatedCrossFadePage()
     );
   }
 }
