@@ -1,3 +1,4 @@
+import 'package:app_animation/animated_container1.dart';
 import 'package:app_animation/basic_animation.dart';
 import 'package:flutter/material.dart';
 
@@ -14,14 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Animation',
       theme: ThemeData(
           brightness: Brightness.dark, primarySwatch: Colors.deepOrange),
-      home: Scaffold(
-          appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        foregroundColor: Colors.black,
-        title: const Text("My First Animation"),
-      ),
-        body: BasicAnimation(),
-      ),
+      home: MyAnimatedContainer1()
     );
   }
 }
