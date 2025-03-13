@@ -28,7 +28,7 @@ class _MyAnimatedContainer2State extends State<MyAnimatedContainer2> {
               image:
                   const DecorationImage(image: AssetImage("images/tie.jpg"))),
           duration: Duration(milliseconds: 2500),
-          curve: Curves.easeInBack,
+          curve: Curves.decelerate,
         ),
       ),
       floatingActionButton: FloatingActionButton(
