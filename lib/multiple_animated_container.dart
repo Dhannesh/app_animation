@@ -13,7 +13,8 @@ enum ViewState {
 }
 
 class _MultipleAnimatedContainerState extends State<MultipleAnimatedContainer> {
-  ViewState _viewState = ViewState.shrunk;
+  ViewState _topViewState = ViewState.shrunk;
+  ViewState _jeansViewState = ViewState.shrunk;
   final double _shrunkSize = 150.0;
   final double _expandedSize = 300.0;
 
@@ -30,8 +31,8 @@ class _MultipleAnimatedContainerState extends State<MultipleAnimatedContainer> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             AnimatedContainer(
-              width: _viewState == ViewState.expanded ? _expandedSize : _shrunkSize,
-              height: _viewState == ViewState.expanded ? _expandedSize : _shrunkSize,
+              width: _topViewState == ViewState.expanded ? _expandedSize : _shrunkSize,
+              height: _topViewState == ViewState.expanded ? _expandedSize : _shrunkSize,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image:
@@ -40,11 +41,16 @@ class _MultipleAnimatedContainerState extends State<MultipleAnimatedContainer> {
                   )
               ),
               duration: Duration(milliseconds: 3000),
-              curve: Curves.linear,
+              curve: Curves.bounceIn,
+              onEnd: (){
+                setState(() {
+                  _jeansViewState = (_jeansViewState==ViewState.expanded) ? ViewState.shrunk: ViewState.expanded;
+                });
+              },
             ),
             AnimatedContainer(
-              width: _viewState == ViewState.expanded ? _expandedSize : _shrunkSize,
-              height: _viewState == ViewState.expanded ? _expandedSize : _shrunkSize,
+              width: _jeansViewState == ViewState.expanded ? _expandedSize : _shrunkSize,
+              height: _jeansViewState == ViewState.expanded ? _expandedSize : _shrunkSize,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image:
@@ -53,7 +59,7 @@ class _MultipleAnimatedContainerState extends State<MultipleAnimatedContainer> {
                   )
               ),
               duration: Duration(milliseconds: 3000),
-              curve: Curves.linear,
+              curve: Curves.elasticIn,
             ),
           ],
         ),
@@ -61,7 +67,7 @@ class _MultipleAnimatedContainerState extends State<MultipleAnimatedContainer> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _viewState = (_viewState == ViewState.expanded) ? ViewState.shrunk : ViewState.expanded;
+            _topViewState = (_topViewState == ViewState.expanded) ? ViewState.shrunk : ViewState.expanded;
 
           });
         },
