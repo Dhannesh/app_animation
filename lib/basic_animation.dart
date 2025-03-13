@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class BasicAnimation extends StatefulWidget {
@@ -8,7 +11,13 @@ class BasicAnimation extends StatefulWidget {
 }
 
 class _BasicAnimationState extends State<BasicAnimation> {
-  double _sliderValue = 50.0;
+  double _side = 50.0;
+  Color _color = Color.fromARGB(
+      Random.secure().nextInt(255),
+      Random.secure().nextInt(255),
+      Random.secure().nextInt(255),
+      Random.secure().nextInt(255));
+  Timer? timer;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,10 +25,10 @@ class _BasicAnimationState extends State<BasicAnimation> {
         Expanded(
             child: Center(
           child: Container(
-            width: _sliderValue,
-            height: _sliderValue,
+            width: _side,
+            height: _side,
             alignment: Alignment.center,
-            decoration: BoxDecoration(color: Colors.lightGreenAccent),
+            decoration: BoxDecoration(color: _color),
           ),
         )),
         Padding(
@@ -27,15 +36,61 @@ class _BasicAnimationState extends State<BasicAnimation> {
           child: Row(
             children: <Widget>[
               Expanded(
-                  child: Slider(
-                      value: _sliderValue,
-                      min: 20,
-                      max: 300,
-                      onChanged: (double value) {
-                        setState(() {
-                          _sliderValue = value;
+                  child: ElevatedButton(
+                      child: Text('Shrink'),
+                      onPressed: () {
+                        timer?.cancel();
+                        timer = Timer.periodic(Duration(milliseconds: 100),
+                            (timer) {
+                          setState(() {
+                            if (_side > 1) {
+                              _side -= 2;
+                              if (_side % 10 == 0) {
+                                _color = Color.fromARGB(
+                                    Random.secure().nextInt(255),
+                                    Random.secure().nextInt(255),
+                                    Random.secure().nextInt(255),
+                                    Random.secure().nextInt(255));
+                              }
+                            }
+                          });
                         });
-                      }))
+                      })),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                  child: ElevatedButton(
+                      child: Text('Stop'),
+                      onPressed: () {
+                        setState(() {
+                          timer?.cancel();
+                        });
+                      })),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                  child: ElevatedButton(
+                      child: Text('Grow'),
+                      onPressed: () {
+                        timer?.cancel();
+                        timer = Timer.periodic(Duration(milliseconds: 100),
+                            (timer) {
+                          setState(() {
+                            if (_side < 300) {
+                              _side += 2;
+                              if (_side % 10 == 0) {
+                                _color = Color.fromARGB(
+                                    Random.secure().nextInt(255),
+                                    Random.secure().nextInt(255),
+                                    Random.secure().nextInt(255),
+                                    Random.secure().nextInt(255));
+                              }
+                            }
+                          });
+                        });
+                      })),
             ],
           ),
         )
