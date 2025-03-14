@@ -1,7 +1,9 @@
 import 'package:app_animation/animated_container1.dart';
 import 'package:app_animation/animated_cross_fade_page.dart';
 import 'package:app_animation/animated_opacity_page.dart';
+import 'package:app_animation/animated_slide_page.dart';
 import 'package:app_animation/basic_animation.dart';
+import 'package:app_animation/changing_circle.dart';
 import 'package:app_animation/multiple_animated_container.dart';
 import 'package:app_animation/my_animated_container2.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Animation',
       theme: ThemeData(
           brightness: Brightness.dark, primarySwatch: Colors.deepOrange),
-      home: AnimatedCrossFadePage()
+      home: ChangingCircle()
     );
   }
 }
