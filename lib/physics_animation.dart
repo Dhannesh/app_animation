@@ -11,17 +11,17 @@ class PhysicsAnimation extends StatefulWidget {
 class _PhysicsAnimationState extends State<PhysicsAnimation> with SingleTickerProviderStateMixin{
 
   late AnimationController _controller;
-  late GravitySimulation _simulation;
+  late SpringSimulation _simulation;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _simulation=GravitySimulation(
-        1000.0, //acceleration, pixels per second per square
+    _simulation=SpringSimulation(
+      const SpringDescription(mass: 1, stiffness: 10, damping: 0.8),
         0.0, // starting point
         650.0, // end point
-        0.0 // starting velocity
+        10.0 // starting velocity
     );
     _controller = AnimationController(vsync: this, upperBound: 650)..addListener(() {
       setState(() {
@@ -53,7 +53,7 @@ class _PhysicsAnimationState extends State<PhysicsAnimation> with SingleTickerPr
             child: Container(
               width: 100,
               height: 100,
-              child: Image.asset("images/stone.png"),
+              child: Image.asset("images/ball.png"),
           )
           ),
           Positioned(
