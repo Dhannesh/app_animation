@@ -57,7 +57,7 @@ Positioned circle(Size size, double animationValue) {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           image: DecorationImage(
-              image: AssetImage("images/dog.jpg"), fit: BoxFit.cover),
+              image: AssetImage("images/ducky.png"), fit: BoxFit.cover),
         ),
       ),
     ),

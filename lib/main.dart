@@ -9,6 +9,8 @@ import 'package:app_animation/changing_circle.dart';
 import 'package:app_animation/multiple_animated_container.dart';
 import 'package:app_animation/my_animated_container2.dart';
 import 'package:app_animation/my_wallet.dart';
+import 'package:app_animation/product_details.dart';
+import 'package:app_animation/products.dart';
 import 'package:app_animation/profile_page_animator.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Animation',
       theme: ThemeData(
           brightness: Brightness.dark, primarySwatch: Colors.deepOrange),
-      home: ProfilePageAnimator()
+      routes: {
+        '/':(context)=>const ProductsView(),
+        '/product_details':(context)=> const ProductDetails(),
+      },
     );
+
   }
 }
