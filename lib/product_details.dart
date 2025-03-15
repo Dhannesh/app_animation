@@ -5,6 +5,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var arguments = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Details'),
@@ -14,9 +15,9 @@ class ProductDetails extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Hero(tag: 'toy', child: Image.asset("images/ducky.png")),
-          const Text(
-            "Duck",
+          Hero(tag: arguments['toy'].title, child: Image.asset("${arguments['toy'].imageName}")),
+          Text(
+            "${arguments['toy'].title}",
             style: TextStyle(
                 fontSize: 44,
                 fontWeight: FontWeight.bold,

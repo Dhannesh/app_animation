@@ -1,5 +1,24 @@
 import 'package:flutter/material.dart';
 
+class Product {
+  final String imageName;
+  final String title;
+  Product({required this.imageName, required this.title});
+}
+
+List<Product> _toys = [
+  Product(imageName: "images/ball.png", title: "Ball"),
+  Product(imageName: "images/car.png", title: "Car"),
+  Product(imageName: "images/dino.png", title: "Dinosaur"),
+  Product(imageName: "images/ducky.png", title: "Duck"),
+  Product(imageName: "images/teddy.png", title: "Teddy Bear"),
+  Product(imageName: "images/horse.png", title: "Rocking Horse"),
+  Product(imageName: "images/doll.png", title: "Doll"),
+  Product(imageName: "images/robot.png", title: "Robot"),
+
+];
+
+
 class ProductsView extends StatelessWidget {
   const ProductsView({super.key});
 
@@ -11,29 +30,36 @@ class ProductsView extends StatelessWidget {
         backgroundColor: Colors.deepOrange,
         foregroundColor: Colors.white,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Hero(
-              tag: 'toy',
-              child: SizedBox(
-                height: 200,
-                width: 200,
-                child: Image.asset("images/ducky.png"),
+      body: GridView.custom(
+        padding: EdgeInsets.all(10),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          childrenDelegate: SliverChildBuilderDelegate((context, int index){
+            return Stack(children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                child: Hero(
+                  tag: _toys[index].title,
+                    child: Image.asset(_toys[index].imageName, height: double.infinity, width: double.infinity, fit: BoxFit.cover)),
               ),
-            ),
-            SizedBox(
-              height: 100,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange,foregroundColor: Colors.white),
-                onPressed: (){
-              Navigator.pushNamed(context, '/product_details');
-            }, child: Text("View"))
-          ]
-        ),
-      ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(onPressed: (){
+                  Navigator.pushNamed(context, "/product_details",arguments: {'toy':_toys[index]});
+                },
+            style: ElevatedButton.styleFrom(fixedSize: Size(200, 40), shape: StadiumBorder(), backgroundColor: Colors.deepOrange,foregroundColor: Colors.white),
+            child: Text(_toys[index].title),
+              )
+              )
+            ]
+            );
+          },
+          childCount: _toys.length
+          )
+      )
     );
   }
 }
