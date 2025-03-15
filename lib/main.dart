@@ -10,6 +10,7 @@ import 'package:app_animation/multiple_animated_container.dart';
 import 'package:app_animation/my_animated_container2.dart';
 import 'package:app_animation/my_wallet.dart';
 import 'package:app_animation/physics_animation.dart';
+import 'package:app_animation/physics_dragglable.dart';
 import 'package:app_animation/product_details.dart';
 import 'package:app_animation/products.dart';
 import 'package:app_animation/profile_page_animator.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Animation',
       theme: ThemeData(
           brightness: Brightness.dark, primarySwatch: Colors.deepOrange),
-     home: const PhysicsAnimation(),
+     home: const PhysicsDraggable(),
     );
 
   }
