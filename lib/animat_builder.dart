@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class AniBuilder extends StatefulWidget {
   const AniBuilder({super.key});
@@ -16,6 +17,11 @@ class _AniBuilderState extends State<AniBuilder>
     super.initState();
     _animationController = AnimationController(
         duration: Duration(milliseconds: 2500), vsync: this);
+    _animationController.addStatusListener((status){
+      if(status == AnimationStatus.completed){
+        _animationController.reset();
+      }
+    });
   }
 
   @override
@@ -39,8 +45,8 @@ class _AniBuilderState extends State<AniBuilder>
             child: AnimatedBuilder(
               animation: _animationController,
               builder: (BuildContext _, child) {
-                return Transform.scale(
-                  scale: _animationController.value,
+                return Transform.rotate(
+                  angle: 2* pi * _animationController.value,
                   child: child,
                 );
               },
@@ -61,7 +67,7 @@ class _AniBuilderState extends State<AniBuilder>
                 Expanded(
                     child: ElevatedButton(
                         onPressed: () {
-                          _animationController.repeat(reverse: true);
+                          _animationController.forward(); //.repeat(reverse: true);
                         },
                         child: Text('Animate'))),
                 Expanded(
