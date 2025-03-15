@@ -1,3 +1,4 @@
+import 'package:app_animation/animat_builder.dart';
 import 'package:app_animation/animated_container1.dart';
 import 'package:app_animation/animated_cross_fade_page.dart';
 import 'package:app_animation/animated_opacity_page.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Animation',
       theme: ThemeData(
           brightness: Brightness.dark, primarySwatch: Colors.deepOrange),
-      home: ChangingCircle()
+      home: AniBuilder()
     );
   }
 }
